@@ -42,7 +42,7 @@ You will also need to have software installed like Anaconda to run and execute a
 We Split the feature & target variable data set into train, test and then built pipeline and implemented 3 machine learning models.
 Since the churned users are a fairly small subset, we used F1 score as the metric to optimize and we found GBTClassifier better model compared to other One.
 
-I post a blog about the detail, you can find it here.
+I post a blog about the detail, you can find it [here]().
 
 ## Licensing, Authors, Acknowledgements
 
