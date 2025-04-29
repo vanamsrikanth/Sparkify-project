@@ -1,6 +1,8 @@
 # Sparkify-project
 ### Building Customer Churn Predictive Model Using SPARK
 
+.config("spark.sql.catalogImplementation", "hive")
+.config("spark.hadoop.hive.metastore.client.factory.class", "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory")
 This repository contains the results of the Data Science Nanodegree Sparkify Capstone Project. Its’s purpose is to give the reviewers access to the code. More information can be found on a [Medium Blog Post](https://medium.com/@vanamsrikanth/customer-churn-prediction-for-music-app-using-pyspark-4127c3c00c1f).
 
 
