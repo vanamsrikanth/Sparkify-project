@@ -31,3 +31,5 @@ for i, table in enumerate(lists, start=1):
 # Join all with commas
 final_output = ",\n".join(records)
 print(final_output)
+
+final_output = "{\n  \"jobs\": [\n" + ",\n".join(records) + "\n  ]\n}"
