@@ -1,0 +1,33 @@
+from datetime import datetime, timedelta
+
+lists = ['RPDA_RFPD.FACILITY','CDL_AMBIT.TMP_GEN_FAC_PROD_LIMITS',
+         'CDL_AMBIT.TMP_GEN_FACILITIES_LIMITS','CDL_AMBIT.TMP_GEN_FAC_TEST']  # <-- put your 40 tables here
+
+base_template = """{{
+    "name": "sch_Package_solution_test_ml_job_{i}",
+    "timeout": "2880",
+    "type": "SCHEDULED",
+    "schedule": "cron({minute} {hour} {day} {month} ? {year})",
+    "parameters": "--job_config_file_path cdl_job_config_auto_suggestion_ML.csv --data_config_file_path {table_name}"
+}}"""
+
+# Starting cron time
+start_time = datetime(2025, 9, 12, 10, 12, 0)  # 12th Sept 2025 10:12
+
+records = []
+for i, table in enumerate(lists, start=1):
+    cron_time = start_time + timedelta(minutes=6 * (i - 1))
+    record = base_template.format(
+        i=i,
+        minute=cron_time.minute,
+        hour=cron_time.hour,
+        day=cron_time.day,
+        month=cron_time.month,
+        year=cron_time.year,
+        table_name=table
+    )
+    records.append(record)
+
+# Join all with commas
+final_output = ",\n".join(records)
+print(final_output)
