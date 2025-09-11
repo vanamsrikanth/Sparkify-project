@@ -33,3 +33,23 @@ final_output = ",\n".join(records)
 print(final_output)
 
 final_output = "{\n  \"jobs\": [\n" + ",\n".join(records) + "\n  ]\n}"
+
+# First filter
+filtered = df[
+    (df["schedule_name"].str.contains(job_schedule_type)) &
+    (df["file_name"] == table_name)
+]
+
+# Get top 10 latest run_dates
+latest_run_dates = (
+    filtered["run_date"]
+    .drop_duplicates()
+    .sort_values(ascending=False)
+    .head(10)
+)
+
+# Apply again
+result_df = (
+    filtered[filtered["run_date"].isin(latest_run_dates)]
+    .sort_values("run_date", ascending=False)
+)
